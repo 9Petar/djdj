@@ -1,0 +1,33 @@
+{% load static %}
+<div class="sticky-top">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary navbar-custom">
+        <div class="container-fluid">
+            <a class="navbar-brand d-flex align-items-center gap-2" href="#">
+                <img src="{% static 'logo/file1.png' %}" alt="Blissful Stay" width="60" height="60">
+                <span class="fw-bold">Blissful Stay</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarScroll">
+                <ul class="navbar-nav w-100 my-2 my-lg-0 navbar-nav-scroll navbar-nav-centered justify-content-around" style="--bs-scroll-height: 100px;">
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.resolver_match.url_name == 'index' %}active{% endif %}" href="{% url 'index' %}">Početna</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.resolver_match.url_name == 'about' %}active{% endif %}" href="{% url 'about' %}">O nama</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.resolver_match.url_name == 'rooms' %}active{% endif %}" href="{% url 'rooms' %}">Sobe</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.resolver_match.url_name == 'contact' %}active{% endif %}" href="{% url 'contact' %}">Kontakt</a>
+                    </li>
+                    <li class="nav-item book-now-btn">
+                        <a class="btn btn-sm {% if request.resolver_match.url_name == 'book' %}active{% endif %}" href="{% url 'book' %}">Rezerviraj Sada</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>

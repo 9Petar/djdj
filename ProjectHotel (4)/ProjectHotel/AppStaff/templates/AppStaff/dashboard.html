@@ -1,0 +1,255 @@
+{% extends 'AppStaff/base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 style="color: #2e1c0d;">🏨 Dashboard Rezervacija</h2>
+        <a href="{% url 'staff_messages' %}" class="btn px-4" style="background-color: #2e1c0d; color: white;">
+            📬 Poruke Posjetitelja
+        </a>
+    </div>
+    <ul class="nav nav-pills mb-4" id="myTab" role="tablist">
+        <li class="nav-item me-2" role="presentation">
+            <button class="nav-link active fw-bold" id="pending-tab" data-bs-toggle="tab" data-bs-target="#pending" type="button" role="tab" style="color: #2e1c0d;">
+                ⏳ Na čekanju
+            </button>
+        </li>
+        <li class="nav-item me-2" role="presentation">
+            <button class="nav-link fw-bold" id="approved-tab" data-bs-toggle="tab" data-bs-target="#approved" type="button" role="tab" style="color: #2e1c0d;">
+                ✅ Odobreno
+            </button>
+        </li>
+        <li class="nav-item me-2" role="presentation">
+            <button class="nav-link fw-bold" id="active-tab" data-bs-toggle="tab" data-bs-target="#active" type="button" role="tab" style="color: #2e1c0d;">
+                🔑 Trenutni Gosti
+            </button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link fw-bold" id="history-tab" data-bs-toggle="tab" data-bs-target="#history" type="button" role="tab" style="color: #2e1c0d;">
+                📜 Povijest
+            </button>
+        </li>
+    </ul>
+
+    <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade show active" id="pending" role="tabpanel">
+            <div class="card shadow-sm border-0">
+                <div class="card-header text-white" style="background-color: #2e1c0d;">
+                    <h5 class="mb-0">Zahtjevi na čekanju</h5>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle mb-0">
+                        <thead class="table-light">
+                            <tr>
+                                <th>Gost</th>
+                                <th>Tip Sobe</th>
+                                <th>Datumi</th>
+                                <th class="text-end">Akcije</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for booking in bookings %}
+                                {% if booking.status == 'PENDING' %}
+                                <tr>
+                                    <td class="fw-bold">{{ booking.guest.first_name }} {{ booking.guest.last_name }}</td>
+                                    <td>{{ booking.room.get_room_type_display }}</td>
+                                    <td>{{ booking.check_in|date:"d.m.Y" }} - {{ booking.check_out|date:"d.m.Y" }}</td>
+                                    <td class="text-end">
+                                        <form method="POST" action="{% url 'update_booki    ng_status' booking.id %}" class="d-inline">
+                                            {% csrf_token %}
+                                            <input type="hidden" name="status" value="APPROVED">
+                                            <button type="submit" class="btn btn-sm btn-success">
+                                                <i class="bi bi-check-lg"></i> Odobri
+                                            </button>
+                                        </form>
+                                        <form method="POST" action="{% url 'update_booking_status' booking.id %}" class="d-inline ms-1">
+                                            {% csrf_token %}
+                                            <input type="hidden" name="status" value="CANCELLED">
+                                            <button type="submit" class="btn btn-sm btn-danger">
+                                                <i class="bi bi-x-lg"></i> Odbij
+                                            </button>
+                                        </form>
+                                    </td>
+                                </tr>
+                                {% endif %}
+                            {% empty %}
+                                <tr><td colspan="4" class="text-center text-muted py-4">Nema zahtjeva na čekanju.</td></tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane fade" id="approved" role="tabpanel">
+            <div class="card shadow-sm border-0">
+                <div class="card-header text-white" style="background-color: #2e1c0d;">
+                    <h5 class="mb-0">Spremno za Check-in</h5>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle mb-0">
+                        <thead class="table-light">
+                            <tr>
+                                <th>Gost</th>
+                                <th>Tip Sobe</th>
+                                <th>Datumi</th>
+                                <th class="text-end">Check-In Akcija</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for booking in bookings %}
+                                {% if booking.status == 'APPROVED' %}
+                                <tr>
+                                    <td class="fw-bold">{{ booking.guest.first_name }} {{ booking.guest.last_name }}</td>
+                                    <td>{{ booking.room.get_room_type_display }}</td>
+                                    <td>{{ booking.check_in|date:"d.m.Y" }} - {{ booking.check_out|date:"d.m.Y" }}</td>
+                                    <td class="text-end">
+                                        <form method="POST" action="{% url 'update_booking_status' booking.id %}" class="d-flex justify-content-end align-items-center gap-2">
+                                            {% csrf_token %}
+                                            <input type="hidden" name="status" value="CHECKED_IN">
+                                            <input type="number" name="room_number" class="form-control form-control-sm" style="width: 80px;" placeholder="Soba" required>
+                                            <button type="submit" class="btn btn-sm btn-primary">
+                                                Prijava
+                                            </button>
+                                            <button type="submit" name="status" value="CANCELLED" class="btn btn-sm btn-outline-danger">
+                                                Otkaži
+                                            </button>
+                                        </form>
+                                    </td>
+                                </tr>
+                                {% endif %}
+                            {% empty %}
+                                <tr><td colspan="4" class="text-center text-muted py-4">Nema odobrenih rezervacija.</td></tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane fade" id="active" role="tabpanel">
+            <div class="card shadow-sm border-0">
+                <div class="card-header text-white" style="background-color: #2e1c0d;">
+                    <h5 class="mb-0">Gosti u Hotelu</h5>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle mb-0">
+                        <thead class="table-light">
+                            <tr>
+                                <th>Gost</th>
+                                <th>Soba</th>
+                                <th>Datumi</th>
+                                <th>Status Ključa</th>
+                                <th class="text-end">Akcija</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for booking in bookings %}
+                                {% if booking.status == 'CHECKED_IN' %}
+                                <tr>
+                                    <td class="fw-bold">{{ booking.guest.first_name }} {{ booking.guest.last_name }}</td>
+                                    <td><span class="badge bg-secondary fs-6">Soba {{ booking.room_number }}</span> <small class="text-muted">({{ booking.room.get_room_type_display }})</small></td>
+                                    <td>{{ booking.check_in|date:"d.m.Y" }} - {{ booking.check_out|date:"d.m.Y" }}</td>
+                                    <td>
+                                        {% if booking.key_given %}
+                                            <span class="badge bg-success">Izadan</span>
+                                        {% else %}
+                                            <form method="POST" action="{% url 'give_key' booking.id %}">
+                                                {% csrf_token %}
+                                                <button type="submit" class="btn btn-warning btn-sm text-dark">
+                                                    <i class="bi bi-key-fill"></i> Izdaj Ključ
+                                                </button>
+                                            </form>
+                                        {% endif %}
+                                    </td>
+                                    <td class="text-end">
+                                        <form method="POST" action="{% url 'update_booking_status' booking.id %}">
+                                            {% csrf_token %}
+                                            <input type="hidden" name="status" value="CHECKED_OUT">
+                                            <button type="submit" class="btn btn-dark btn-sm">
+                                                <i class="bi bi-door-open-fill"></i> Check Out
+                                            </button>
+                                        </form>
+                                    </td>
+                                </tr>
+                                {% endif %}
+                            {% empty %}
+                                <tr><td colspan="5" class="text-center text-muted py-4">Nema trenutnih gostiju.</td></tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane fade" id="history" role="tabpanel">
+            <div class="card shadow-sm border-0">
+                <div class="card-header text-white" style="background-color: #6c757d;">
+                    <h5 class="mb-0">Povijest Rezervacija</h5>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle mb-0">
+                        <thead class="table-light">
+                            <tr>
+                                <th>Gost</th>
+                                <th>Soba</th>
+                                <th>Datumi</th>
+                                <th>Status</th>
+                                <th class="text-end">Opcije</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for booking in bookings %}
+                                {% if booking.status == 'CHECKED_OUT' or booking.status == 'CANCELLED' %}
+                                <tr>
+                                    <td>{{ booking.guest.first_name }} {{ booking.guest.last_name }}</td>
+                                    <td>
+                                        {% if booking.room_number %}
+                                            Soba {{ booking.room_number }}
+                                        {% else %}
+                                            -
+                                        {% endif %}
+                                    </td>
+                                    <td>{{ booking.check_in|date:"d.m.Y" }} - {{ booking.check_out|date:"d.m.Y" }}</td>
+                                    <td>
+                                        {% if booking.status == 'CHECKED_OUT' %}
+                                            <span class="badge bg-secondary">Završeno</span>
+                                        {% elif booking.status == 'CANCELLED' %}
+                                            <span class="badge bg-danger">Otkazano</span>
+                                        {% endif %}
+                                    </td>
+                                    <td class="text-end">
+                                      {% if booking.status == 'CANCELLED' %}
+                                         <form method="POST" action="{% url 'update_booking_status' booking.id %}" class="d-inline">
+                                            {% csrf_token %}
+                                            <input type="hidden" name="status" value="PENDING">
+                                            <button type="submit" class="btn btn-outline-secondary btn-sm">
+                                                Vrati na čekanje
+                                            </button>
+                                         </form>
+                                      {% else %}
+                                         <span class="text-muted">-</span>
+                                      {% endif %}
+                                    </td>
+                                </tr>
+                                {% endif %}
+                            {% empty %}
+                                <tr><td colspan="5" class="text-center text-muted py-4">Prazna povijest.</td></tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<style>
+    .nav-pills .nav-link.active {
+        background-color: #2e1c0d !important;
+        color: white !important;
+    }
+    .nav-pills .nav-link {
+        background-color: #f8f9fa;
+        margin-bottom: 5px;
+    }
+</style>
+{% endblock %}

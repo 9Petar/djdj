@@ -1,0 +1,102 @@
+{% extends 'AppStaff/base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="text-brand-brown">🏨 Rezervacije na Čekanju</h2>
+    </div>
+
+    <div class="card shadow-sm border-0">
+        <div class="card-header text-white bg-brand-brown">
+            <h5 class="mb-0">Zahtjevi na čekanju</h5>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0">
+                <tr class="table-light">
+                        <th>Gost</th>
+                        <th>Tip Sobe</th>
+                        <th>Datumi</th>
+                        <th class="text-end">Akcije</th>
+                    </tr>
+                    {% for booking in bookings %}
+                        {% if booking.status == 'PENDING' %}
+                        <tr>
+                            <td class="fw-bold">{{ booking.guest.first_name }} {{ booking.guest.last_name }}</td>
+                            <td>{{ booking.room.get_room_type_display }}</td>
+                            <td>{{ booking.check_in|date:"d.m.Y" }} - {{ booking.check_out|date:"d.m.Y" }}</td>
+                            <td class="text-end">
+                                <button type="button" class="btn btn-sm btn-info text-white me-1" data-bs-toggle="modal" data-bs-target="#idCardModal{{ booking.id }}">
+                                    🆔 Osobna
+                                </button>
+                                <form method="POST" action="{% url 'update_booking_status' booking.id %}" class="d-inline">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="status" value="APPROVED">
+                                    <button type="submit" class="btn btn-sm btn-success">
+                                        <i class="bi bi-check-lg"></i> Odobri
+                                    </button>
+                                </form>
+                                <form method="POST" action="{% url 'update_booking_status' booking.id %}" class="d-inline ms-1">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="status" value="CANCELLED">
+                                    <button type="submit" class="btn btn-sm btn-danger">
+                                        <i class="bi bi-x-lg"></i> Odbij
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+
+                        <div class="modal fade" id="idCardModal{{ booking.id }}" tabindex="-1" aria-hidden="true">
+                            <div class="modal-dialog modal-lg">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Osobna iskaznica - {{ booking.guest.first_name }} {{ booking.guest.last_name }}</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body text-center">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <h6>Prednja strana</h6>
+                                                {% if booking.guest.id_front %}
+                                                    <img src="{{ booking.guest.id_front.url }}" class="img-fluid rounded border border-2 mt-2" alt="Prednja strana">
+                                                {% else %}
+                                                    <p class="text-muted mt-5">Nema slike prednje strane.</p>
+                                                {% endif %}
+                                            </div>
+                                            <div class="col-md-6">
+                                                <h6>Stražnja strana</h6>
+                                                {% if booking.guest.id_back %}
+                                                    <img src="{{ booking.guest.id_back.url }}" class="img-fluid rounded border border-2 mt-2" alt="Stražnja strana">
+                                                {% else %}
+                                                    <p class="text-muted mt-5">Nema slike stražnje strane.</p>
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Zatvori</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endif %}
+                    {% empty %}
+                        <tr><td colspan="4" class="text-center text-muted py-4">Nema zahtjeva na čekanju.</td></tr>
+                    {% endfor %}
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block messages %}
+{% if messages %}
+    <div class="container mt-3">
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        {% endfor %}
+    </div>
+{% endif %}
+{% endblock %}

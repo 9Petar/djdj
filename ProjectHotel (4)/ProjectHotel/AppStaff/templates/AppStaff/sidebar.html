@@ -1,0 +1,29 @@
+<div class="col-md-2 sidebar p-0 d-flex flex-column" style="min-height: 100vh; background-color: #343a40;">
+    <br>
+    <h4 class="text-center mb-4 text-white">Staff Portal</h4>
+    
+    <div class="px-3 mb-2 text-uppercase text-muted small fw-bold">Rezervacije</div>
+    
+    <a href="{% url 'staff_dashboard' %}" class="nav-link {% if request.resolver_match.url_name == 'staff_dashboard' %}active-custom{% endif %}">
+        ⏳ Na čekanju
+    </a>
+    <a href="{% url 'approved_bookings' %}" class="nav-link {% if request.resolver_match.url_name == 'approved_bookings' %}active-custom{% endif %}">
+        ✅ Odobreno
+    </a>
+    <a href="{% url 'active_bookings' %}" class="nav-link {% if request.resolver_match.url_name == 'active_bookings' %}active-custom{% endif %}">
+        🔑 Trenutni Gosti
+    </a>
+    <a href="{% url 'booking_history' %}" class="nav-link {% if request.resolver_match.url_name == 'booking_history' %}active-custom{% endif %}">
+        📜 Povijest
+    </a>
+
+    <hr class="text-secondary mx-3">
+
+    <a href="{% url 'staff_messages' %}" class="nav-link {% if request.resolver_match.url_name == 'staff_messages' %}active-custom{% endif %}">
+        📬 Poruke
+    </a>
+    
+    <a href="{% url 'logout' %}" class="nav-link text-danger mt-auto mb-4">
+        🚪 Odjava
+    </a>
+</div>

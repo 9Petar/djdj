@@ -1,0 +1,91 @@
+{% extends "AppGuests/base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container-fluid py-5">
+  <div class="row mb-5">
+    <div class="col-lg-10 mx-auto text-center">
+      <h1 class="display-4 fw-bold mb-3 text-brand-brown">Kontaktirajte Nas</h1>
+      <p class="lead text-muted">Imate pitanja ili trebate dodatne informacije? Javite nam se!</p>
+    </div>
+  </div>
+
+  <div class="row justify-content-center">
+    <div class="col-lg-3 mb-4">
+      <div class="card shadow-sm border-0 h-100">
+        <div class="card-body text-center">
+          <div class="mb-3 icon-contact">📞</div>
+          <h5 class="card-title fw-bold text-brand-brown">Telefonski Broj</h5>
+          <p class="card-text text-muted">+385 91 666 7777</p>
+          <p class="card-text text-muted small">Dostupni smo 26/7</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-3 mb-4">
+      <div class="card shadow-sm border-0 h-100">
+        <div class="card-body text-center">
+          <div class="mb-3 icon-contact">✉️</div>
+          <h5 class="card-title fw-bold text-brand-brown">Email</h5>
+          <p class="card-text text-muted">info@blissfulstay.com</p>
+          <p class="card-text text-muted small">Odgovara se u roku od 6 do 7 sati</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-3 mb-4">
+      <div class="card shadow-sm border-0 h-100">
+        <div class="card-body text-center">
+          <div class="mb-3 icon-contact">📍</div>
+          <h5 class="card-title fw-bold text-brand-brown">Lokacija</h5>
+          <p class="card-text text-muted">China Town 67d</p>
+          <p class="card-text text-muted small">10000, Zagreb RH1</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mt-5 justify-content-center">
+    <div class="col-lg-8">
+      <div class="card shadow-lg border-0">
+        <div class="card-header p-4 bg-brand-brown text-white">
+          <h4 class="mb-0 fw-bold">Pošalji Poruku</h4>
+        </div>
+        <div class="card-body p-4">
+          <form method="post" class="contact-form-width">
+            {% csrf_token %}
+            
+            <div class="row mb-3">
+              <div class="col-md-6">
+                <label for="name" class="form-label fw-bold">Ime i Prezime</label>
+                <input type="text" class="form-control" id="name" name="name" required>
+              </div>
+              <div class="col-md-6">
+                <label for="email" class="form-label fw-bold">Email</label>
+                <input type="email" class="form-control" id="email" name="email" required>
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="phone" class="form-label fw-bold">Telefonski broj</label>
+              <input type="tel" class="form-control" id="phone" name="phone">
+            </div>
+
+            <div class="mb-3">
+              <label for="subject" class="form-label fw-bold">Predmet</label>
+              <input type="text" class="form-control" id="subject" name="subject" required>
+            </div>
+
+            <div class="mb-3">
+              <label for="message" class="form-label fw-bold">Poruka</label>
+              <textarea class="form-control" id="message" name="message" rows="5" required></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-lg w-100 fw-bold btn-brand-brown">Pošalji Poruku</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,74 @@
+{% extends 'AppStaff/base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="text-brand-brown">🏨 Povijest Rezervacija</h2>
+    </div>
+
+    <div class="card shadow-sm border-0">
+        <div class="card-header text-white bg-secondary">
+            <h5 class="mb-0">Povijest rezervacija</h5>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0">
+                <tr class="table-light">
+                        <th>Gost</th>
+                        <th>Status</th>
+                        <th>Soba</th>
+                        <th>Period</th>
+                        <th class="text-end">Akcije</th>
+                    </tr>
+                    {% for booking in bookings %}
+                        {% if booking.status == 'CHECKED_OUT' or booking.status == 'CANCELLED' %}
+                        <tr>
+                            <td>{{ booking.guest.first_name }} {{ booking.guest.last_name }}</td>
+                            <td>
+                                {% if booking.status == 'CHECKED_OUT' %}
+                                    <span class="badge bg-secondary">Završeno</span>
+                                {% else %}
+                                    <span class="badge bg-danger">Otkazano</span>
+                                {% endif %}
+                            </td>
+                            <td>
+                                {{ booking.room.get_room_type_display }}
+                                {% if booking.room_number %}
+                                    <span class="small text-muted">({{ booking.room_number }})</span>
+                                {% endif %}
+                            </td>
+                            <td class="small text-muted">
+                                {{ booking.check_in|date:"d.m.y" }} - {{ booking.check_out|date:"d.m.y" }}
+                            </td>
+                            <td class="text-end">
+                                {% if booking.status == 'CANCELLED' %}
+                                <form method="POST" action="{% url 'return_booking' booking.id %}" class="d-inline">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-sm btn-outline-secondary" title="Vrati na čekanje">
+                                        ↩ Vrati
+                                    </button>
+                                </form>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        {% endif %}
+                    {% empty %}
+                        <tr><td colspan="4" class="text-center text-muted py-4">Nema povijesti rezervacija.</td></tr>
+                    {% endfor %}
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block messages %}
+{% if messages %}
+    <div class="container mt-3">
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        {% endfor %}
+    </div>
+{% endif %}
+{% endblock %}

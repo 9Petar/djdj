@@ -1,0 +1,90 @@
+{% extends 'AppStaff/base.html' %}
+{% block content %}
+<div class="container mt-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="text-brand-brown">🏨 Odobrene Rezervacije</h2>
+    </div>
+
+    <div class="card shadow-sm border-0">
+        <div class="card-header text-white bg-success">
+            <h5 class="mb-0">Spremno za Check-in</h5>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0">
+                <tr class="table-light">
+                        <th>Gost</th>
+                        <th>Soba</th>
+                        <th>Boravak</th>
+                        <th>Soba Broj</th>
+                        <th class="text-end">Akcije</th>
+                    </tr>
+                    {% for booking in bookings %}
+                        {% if booking.status == 'APPROVED' %}
+                        <tr>
+                            <td class="fw-bold">{{ booking.guest.first_name }} {{ booking.guest.last_name }}</td>
+                            <td>{{ booking.room.get_room_type_display }}</td>
+                            <td>{{ booking.check_in|date:"d.m.Y" }} - {{ booking.check_out|date:"d.m.Y" }}</td>
+                            <td>
+                                {% if booking.room_number %}
+                                    <span class="badge bg-secondary">{{ booking.room_number }}</span>
+                                {% else %}
+                                    <span class="text-muted small">Nije dodjeljeno</span>
+                                {% endif %}
+                            </td>
+                            <td class="text-end">
+                                <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#checkInModal{{ booking.id }}">
+                                    🛎️ Dolazak
+                                </button>
+                            </td>
+                        </tr>
+
+                        <div class="modal fade" id="checkInModal{{ booking.id }}" tabindex="-1" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <form method="POST" action="{% url 'update_booking_status' booking.id %}">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="status" value="CHECKED_IN">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title">Dolazak za {{ booking.guest.first_name }}</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="mb-3 text-start">
+                                                <label class="form-label">Dodijeli broj sobe:</label>
+                                                <input type="text" name="room_number" class="form-control" required placeholder="Npr. 101, 204">
+                                            </div>
+                                            <div class="alert alert-info py-2 small">
+                                                Ovo će postaviti status na CHECKED_IN i zabilježiti ključ profesorice.
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Zatvori</button>
+                                            <button type="submit" class="btn btn-primary">Potvrdi Dolazak</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        {% endif %}
+                    {% empty %}
+                        <tr><td colspan="5" class="text-center text-muted py-4">Nema odobrenih rezervacija.</td></tr>
+                    {% endfor %}
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+
+{% block messages %}
+{% if messages %}
+    <div class="container mt-3">
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        {% endfor %}
+    </div>
+{% endif %}
+{% endblock %}

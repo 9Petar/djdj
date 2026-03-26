@@ -1,0 +1,45 @@
+{% extends 'AppStaff/base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="text-brand-brown">🏨 Aktivni Boravci</h2>
+    </div>
+
+    <div class="card shadow-sm border-0">
+        <div class="card-header text-white bg-primary">
+            <h5 class="mb-0">Aktivni boravci</h5>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0">
+                <tr class="table-light">
+                        <th>Soba</th>
+                        <th>Gost</th>
+                        <th>Odlazak</th>
+                        <th class="text-end">Akcije</th>
+                    </tr>
+                    {% for booking in bookings %}
+                        {% if booking.status == 'CHECKED_IN' %}
+                        <tr>
+                            <td><span class="badge bg-primary fs-6">{{ booking.room_number }}</span></td>
+                            <td class="fw-bold">{{ booking.guest.first_name }} {{ booking.guest.last_name }}</td>
+                            <td>{{ booking.check_out|date:"d.m.Y" }}</td>
+                            <td class="text-end">
+                                <form method="POST" action="{% url 'update_booking_status' booking.id %}" class="d-inline">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="status" value="CHECKED_OUT">
+                                    <button type="submit" class="btn btn-sm btn-outline-danger">
+                                        🚪 Check-out
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                        {% endif %}
+                    {% empty %}
+                        <tr><td colspan="4" class="text-center text-muted py-4">Trenutno nema gostiju u hotelu.</td></tr>
+                    {% endfor %}
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

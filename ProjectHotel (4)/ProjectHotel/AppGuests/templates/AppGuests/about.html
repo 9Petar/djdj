@@ -1,0 +1,83 @@
+{% extends "AppGuests/base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container my-5">
+  <div class="row mb-5">
+    <div class="col-lg-8 mx-auto text-center">
+      <h1 class="display-4 fw-bold mb-3">O nama</h1>
+      <p class="lead text-muted">Vaš dom daleko od doma - Premium doživljaj smještaja sa nekom klasom servisa</p>
+      <hr class="my-4">
+    </div>
+  </div>
+
+
+  <div class="row mb-5">
+    <div class="col-lg-6">
+      <h2 class="mb-4">Naša Priča</h2>
+      <p class="mb-3">ProjectHotel je vodeća hotelska mreža sa više od 4 godina iskustva u pružanju izuzetnog smještaja i usluga. Počeli smo kao mali završni projekt Privatne škole Future, a danas smo ponosni na to što ga se napokon riješavamo.</p>
+      <p class="mb-3">Naša misija je jednostavna - proći završni❤. Svaki detalj je napravljen osobno i nezz dal da se kladim u to da zapravo čitate ovo.</p>
+    </div>
+    <div class="col-lg-6">
+      <div class="bg-light p-4 rounded">
+        <h5 class="mb-3">Naši Uspjesi</h5>
+        <ul class="list-unstyled">
+          <li class="mb-2">✓ Više od 6666+ zadovoljnih gostiju godišnje</li>
+          <li class="mb-2">✓ 4.2/5 prosječna ocjena od strane yelp korisnika</li>
+          <li class="mb-2">✓ Certifikat za </li>
+          <li class="mb-2">✓ 24/0 Korisnička podrška</li>
+          <li class="mb-2">✓ Besplatno otkazivanje do 1 sat i 7 minuta prije dolaska</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="row mb-5">
+    <div class="col-lg-12">
+      <h2 class="mb-4 text-center">Što Vam Nudimo</h2>
+    </div>
+    <div class="col-md-4 mb-4">
+      <div class="card h-100 shadow-sm border-0">
+        <div class="card-body text-center">
+          <div class="mb-3 icon-xl">🏨</div>
+          <h5 class="card-title">Moderne Sobe</h5>
+          <p class="card-text text-muted">Sve naše sobe su opremljene besplatnim Wifi-em, modernom tehnologijom "Wifi" i klimatizacijom koja ide na WiFi zajedno sa Wifi televizorom koji je također spojen na Wifi.</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 mb-4">
+      <div class="card h-100 shadow-sm border-0">
+        <div class="card-body text-center">
+          <div class="mb-3 icon-xl">🍽️</div>
+          <h5 class="card-title">Restoran & Bar</h5>
+          <p class="card-text text-muted">Uživajte u kulinarskim delicijama našeg relativno OK restorana i raznolikoj ponudi pića.</p>
+          <br>
+          <p class="card-text text-muted"><i>Konzumacija proizvoda na vlastitu odgovornost.</i></p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 mb-4">
+      <div class="card h-100 shadow-sm border-0">
+        <div class="card-body text-center">
+          <div class="mb-3 icon-xl">💆</div>
+          <h5 class="card-title">Spa & Wellness</h5>
+          <p class="card-text text-muted">Imate li djecu?
+            Imamo riješenje!<br>Riješite se svih briga i opustite se uz naše Spa&Wellness<sup class="fs-10">TM</sup></p>
+          <p class="card-text text-muted"><i>Nenadziranje djece se kazneno naplaćuje.</i></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="p-5 rounded text-center bg-brand-brown text-white">
+        <h3 class="mb-3 fw-bold">Spremni za Nezaboravan Boravak?</h3>
+        <p class="mb-4">Rezervirajte vašu sobu sada i dobijte 0% popusta na prvi boravak!</p>
+        <a href="{% url 'book' %}" class="btn btn-light btn-lg fw-bold">Rezerviraj Sada</a>
+      </div>
+    </div>
+  </div>
+</div>
+{%endblock%}

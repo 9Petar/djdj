@@ -1,0 +1,98 @@
+{% extends "AppStaff/base.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="text-brand-brown">📬 Poruke Posjetitelja</h2>
+    </div>
+    
+    <div class="card shadow-sm border-0">
+        <div class="card-header text-white bg-brand-brown">
+            <h5 class="mb-0">Inbox</h5>
+        </div>
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table class="table table-hover mb-0 align-middle">
+                    <thead class="table-light">
+                        <tr>
+                            <th scope="col">Datum</th>
+                            <th scope="col">Pošiljatelj</th>
+                            <th scope="col">Naslov</th>
+                            <th scope="col">Poruka</th>
+                            <th scope="col" class="text-end">Akcija</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% if messages %}
+                            {% for msg in messages %}
+                            {% if not msg.replied %}
+                            <tr>
+                                <td class="text-muted small w-15">{{ msg.sent_at|date:"d.m.Y H:i" }}</td>
+                                <td class="w-20">
+                                    <div class="fw-bold">{{ msg.name }}</div>
+                                    <div class="small text-muted">{{ msg.email }}</div>
+                                </td>
+                                <td class="fw-semibold w-20">{{ msg.subject }}</td>
+                                <td>{{ msg.message|truncatechars:100 }}</td>
+                                <td class="text-end w-10">
+                                    
+                                    <button type="button" class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#replyModal{{ msg.id }}">
+                                        Odgovori
+                                    </button>
+                                    
+                                    <div class="modal fade" id="replyModal{{ msg.id }}" tabindex="-1" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <form method="POST" action="{% url 'reply_message' %}">
+                                                    {% csrf_token %}
+                                                    <div class="modal-header bg-brand-brown text-white">
+                                                        <h5 class="modal-title">Odgovor na poruku</h5>
+                                                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body text-start">
+                                                        <input type="hidden" name="recipient_email" value="{{ msg.email }}">
+                                                        <input type="hidden" name="message_id" value="{{ msg.id }}">
+                                                        
+                                                        <div class="mb-3">
+                                                            <label class="form-label fw-bold">Šalje se na:</label>
+                                                            <input type="text" class="form-control" value="{{ msg.email }}" disabled>
+                                                        </div>
+                                                        
+                                                        <div class="mb-3">
+                                                            <label class="form-label fw-bold">Naslov:</label>
+                                                            <input type="text" name="subject" class="form-control" value="Re: {{ msg.subject }}" required>
+                                                        </div>
+                                                        
+                                                        <div class="mb-3">
+                                                            <label class="form-label fw-bold">Poruka:</label>
+                                                            <textarea name="message" class="form-control" rows="5" required></textarea>
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Odustani</button>
+                                                        <button type="submit" class="btn btn-brand-brown border-0">Pošalji Mail</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </td>
+                            </tr>
+                            {% endif %}
+                            {% endfor %}
+                        {% else %}
+                            <tr>
+                                <td colspan="5" class="text-center py-5 text-muted">
+                                    <h5 class="fw-normal">Nema novih poruka</h5>
+                                    <p class="mb-0">Vaš inbox je prazan.</p>
+                                </td>
+                            </tr>
+                        {% endif %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

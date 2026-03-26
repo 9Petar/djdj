@@ -1,0 +1,178 @@
+﻿PRIVATNA ŠKOLA FUTURA
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ZAVRŠNI RAD
+ŠK. GOD. 2019./2020.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+IME I PREZIME UČENIKA
+Privatna škola Futura Zagreb
+
+
+
+
+
+
+
+
+
+
+TOČAN NAZIV TEME ZAVRŠNOG RADA
+
+
+
+
+
+
+
+
+
+
+Završni rad - program tehničar za računalstvo/ekonomist Školska godina 2019./2020.
+
+
+
+
+
+
+
+
+
+
+Učenik: Ime i prezime učenika, 4.t/4.t, tehničar za računalstvo/ekonomist
+Mentorica: ime i prezime mentora, titula mentora
+
+
+
+
+
+
+
+
+Zagreb, travanj 2020.
+
+
+SADRŽAJ
+
+
+
+
+1. Uvod        4
+2. Drugo poglavlje        5
+   1. Poglavlje 2.1        5
+   2. Poglavlje 2.2        5
+3. Treće poglavlje        6
+4. Zaključak        7
+5. Izvori        8
+
+
+
+
+1. Uvod
+
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque ipsum odio, placerat at justo quis, ornare egestas odio. Duis euismod interdum tincidunt. Sed laoreet urna et nulla aliquam, eget maximus orci auctor. Phasellus laoreet massa eu dolor semper rhoncus. Phasellus volutpat aliquam ipsum, et accumsan sapien scelerisque id. Aliquam ultricies fermentum convallis. Integer sed est eu quam semper elementum venenatis eu magna. Phasellus ultrices elit quis leo dictum, sit amet feugiat magna maximus. Curabitur luctus tellus quis ullamcorper vulputate. Pellentesque mollis quam vel diam efficitur, sed consequat diam egestas. Fusce nisi nulla, cursus quis ipsum eu, pellentesque luctus leo. Nulla.
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque ipsum odio, placerat at justo quis, ornare egestas odio. Duis euismod interdum tincidunt. Sed laoreet urna et nulla aliquam, eget maximus orci auctor. Phasellus laoreet massa eu dolor semper rhoncus. Phasellus volutpat aliquam ipsum, et accumsan sapien scelerisque id. Aliquam ultricies fermentum convallis. Integer sed est eu quam semper elementum venenatis eu magna. Phasellus ultrices elit quis leo dictum, sit amet feugiat magna maximus. Curabitur luctus tellus quis ullamcorper vulputate. Pellentesque mollis quam vel diam efficitur, sed consequat diam egestas. Fusce nisi nulla, cursus quis ipsum eu, pellentesque luctus leo. Nulla.
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque ipsum odio, placerat at justo quis, ornare egestas odio. Duis euismod interdum tincidunt. Sed laoreet urna et nulla aliquam, eget maximus orci auctor. Phasellus laoreet massa eu dolor semper rhoncus. Phasellus volutpat aliquam ipsum, et accumsan sapien scelerisque id. Aliquam ultricies fermentum convallis. Integer sed est eu quam semper elementum venenatis eu magna. Phasellus ultrices elit quis leo dictum, sit amet feugiat magna maximus. Curabitur luctus tellus quis ullamcorper vulputate. Pellentesque mollis quam vel diam efficitur, sed consequat diam egestas. Fusce nisi nulla, cursus quis ipsum eu, pellentesque luctus leo. Nulla.
+2. Drugo poglavlje
+
+
+   1. Poglavlje 2.1
+
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque ipsum odio, placerat at justo quis, ornare egestas odio. Duis euismod interdum tincidunt. Sed laoreet urna et nulla aliquam, eget maximus orci auctor. Phasellus laoreet massa eu dolor semper rhoncus.
+   2. Poglavlje 2.2
+
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque ipsum odio, placerat at justo quis, ornare egestas odio. Duis euismod interdum tincidunt. Sed laoreet urna et nulla aliquam, eget maximus orci auctor. Phasellus laoreet massa eu dolor semper rhoncus.
+  
+
+
+
+
+
+
+
+Slika 1. Primjer umetanja slike
+3. Treće poglavlje
+
+
+…
+4. Zaključak
+
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque ipsum odio, placerat at justo quis, ornare egestas odio. Duis euismod interdum tincidunt. Sed laoreet urna et nulla aliquam, eget maximus orci auctor. Phasellus laoreet massa eu dolor semper rhoncus. Phasellus volutpat aliquam ipsum, et accumsan sapien scelerisque id. Aliquam ultricies fermentum convallis. Integer sed est eu quam semper elementum venenatis eu magna. Phasellus ultrices elit quis leo dictum, sit amet feugiat magna maximus. Curabitur luctus tellus quis ullamcorper vulputate. Pellentesque mollis quam vel diam efficitur, sed consequat diam egestas. Fusce nisi nulla, cursus quis ipsum eu, pellentesque luctus leo. Nulla.
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque ipsum odio, placerat at justo quis, ornare egestas odio. Duis euismod interdum tincidunt. Sed laoreet urna et nulla aliquam, eget maximus orci auctor. Phasellus laoreet massa eu dolor semper rhoncus. Phasellus volutpat aliquam ipsum, et accumsan sapien scelerisque id. Aliquam ultricies fermentum convallis. Integer sed est eu quam semper elementum venenatis eu magna. Phasellus ultrices elit quis leo dictum, sit amet feugiat magna maximus. Curabitur luctus tellus quis ullamcorper vulputate. Pellentesque mollis quam vel diam efficitur, sed consequat diam egestas. Fusce nisi nulla, cursus quis ipsum eu, pellentesque luctus leo. Nulla.
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque ipsum odio, placerat at justo quis, ornare egestas odio. Duis euismod interdum tincidunt. Sed laoreet urna et nulla aliquam, eget maximus orci auctor. Phasellus laoreet massa eu dolor semper rhoncus. Phasellus volutpat aliquam ipsum, et accumsan sapien scelerisque id. Aliquam ultricies fermentum convallis. Integer sed est eu quam semper elementum venenatis eu magna. Phasellus ultrices elit quis leo dictum, sit amet feugiat magna maximus. Curabitur luctus tellus quis ullamcorper vulputate. Pellentesque mollis quam vel diam efficitur, sed consequat diam egestas. Fusce nisi nulla, cursus quis ipsum eu, pellentesque luctus leo. Nulla.
+5. Izvori
+1. „Django REST framework“, Django REST framework, Encode OSS Ltd, https://www.django-rest-framework.org/ (20.2.2020.)
+2. „Django documentation“, Django Documentation, Django Software Foundation, https://www.djangoproject.com/foundation/ (19.20.2020.)
+DATUM OBRANE ZAVRŠNOGA RADA
+  
+
+PRIJEDLOG OCJENE ZAVRŠNOGA RADA
+  
+
+KONAČNA OCJENA
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ČLANOVI ISPITNE KOMISIJE
+1.         
+2.         
+3.
